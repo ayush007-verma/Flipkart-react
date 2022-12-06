@@ -6,7 +6,7 @@ const DefaultData = async () => {
         console.log('Data imported into the db')
     }
     catch(err){
-        console.log('error while inserting defalut data from atlas db in DefaultData default.js' ,err.message)
+        console.log('error while inserting defalut data from atlas db in DefaultData default.js\n :-> ' ,err.message)
     }
 
 }

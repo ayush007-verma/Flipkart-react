@@ -18,6 +18,7 @@ const SubHeading = styled(Typography)`
     font-size : 10px;
     font-style : italic;
 `
+
 const PlusImg = styled('img')({
     width: 10,
     height: 10,

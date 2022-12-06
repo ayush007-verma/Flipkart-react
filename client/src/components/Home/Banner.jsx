@@ -1,4 +1,5 @@
 import Carausel from 'react-multi-carousel'
+
 import { BannerData } from './../../Constants/data'
 import { styled } from '@mui/material'
 import 'react-multi-carousel/lib/styles.css';

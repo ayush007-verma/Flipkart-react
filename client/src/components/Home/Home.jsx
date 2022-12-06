@@ -1,7 +1,8 @@
 import NavBar from './NavBar'
 import Banner from './Banner'
-import {Box ,styled} from '@mui/material'
+import Slide from './Slide'
 
+import {Box ,styled} from '@mui/material'
 
 
 const Component = styled(Box)`
@@ -15,6 +16,7 @@ const Home = () => {
 
       <Component>
         <Banner />
+        {/* <Slide/> */}
       </Component>
     </>
   )
