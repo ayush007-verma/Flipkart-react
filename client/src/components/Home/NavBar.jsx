@@ -1,12 +1,17 @@
 import { AddBox } from '@mui/icons-material'
-import {Box ,styled, Typography} from '@mui/material'
-import { NavData } from '../../Constants/data'
+import { Box, styled, Typography } from '@mui/material'
+import { navData } from '../../Constants/data'
 
-const NavWrapper = styled(Box)`
-    display : flex;
-    margin : 55px 130px 0 130px;
-    justify-content : space-between
-`
+const NavWrapper = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    margin: '55px 130px 0 130px',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    [theme.breakpoints.down('lg')]: {
+        margin: 0,
+        oveflow: 'overlay'
+    }
+}))
 
 const NavContainer = styled(Box)`
     padding : 12px 8px;
@@ -19,18 +24,18 @@ const Text = styled(Typography)`
     font-family : inherit;
 `
 const NavBar = () => {
-  return (
-    <NavWrapper>
-        {
-            NavData.map((data,idx) => (
-                <NavContainer key={idx}>
-                    <img src={data.url} alt="nav" style={{width : 64}}/>
-                    <Typography>{data.text}</Typography>
-                </NavContainer>
-            ))
-        }
-    </NavWrapper>
-  )
+    return (
+        <NavWrapper>
+            {
+                navData.map((data, idx) => (
+                    <NavContainer key={idx}>
+                        <img src={data.url} alt="nav" style={{ width: 64 }} />
+                        <Typography>{data.text}</Typography>
+                    </NavContainer>
+                ))
+            }
+        </NavWrapper>
+    )
 }
 
 export default NavBar

@@ -60,7 +60,7 @@ const Text = styled(Typography)`
   margin-top : 5px;
 `
 
-const Slide = ({ products }) => {
+const Slide = ({ products, title, timer }) => {
   const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
   const renderer = ({ hours, minutes, seconds }) => {
     return <Box variant="span"> {hours} : {minutes} : {seconds} Left</Box>
@@ -69,12 +69,15 @@ const Slide = ({ products }) => {
     <Component>
       <Deal>
         <DealText>
-          Deal of the Day
+          {title}
         </DealText>
-        <Timer>
-          <img src={timerURL} alt="timer" />
-          <Countdown date={Date.now() + 5.04e+7} renderer={renderer} />
-        </Timer>
+        {
+          timer &&
+          <Timer>
+            <img src={timerURL} alt="timer" />
+            <Countdown date={Date.now() + 5.04e+7} renderer={renderer} />
+          </Timer>
+        }
         <ViewAllButton variant="contained" color="primary">VIEW AL</ViewAllButton>
       </Deal>
       <Divider />
@@ -94,11 +97,11 @@ const Slide = ({ products }) => {
       >
         {(products.map(
           (product, id) => (
-            <Box textAlign="center" style={{padding : "25px 15px"}}>
+            <Box textAlign="center" style={{ padding: "25px 15px" }}>
               <Image src={product.url} alt={`product - ${id}`} />
-              <Text style={{fontWeight : 600, color : '#212121'}}>{product.title.shortTitle}</Text>
-              <Text style={{color : 'green'}}>{product.discount}</Text>
-              <Text style={{color : '#212121', opacity : ".6"}}>{product.tagline}</Text>
+              <Text style={{ fontWeight: 600, color: '#212121' }}>{product.title.shortTitle}</Text>
+              <Text style={{ color: 'green' }}>{product.discount}</Text>
+              <Text style={{ color: '#212121', opacity: ".6" }}>{product.tagline}</Text>
             </Box>
           )
         ))}

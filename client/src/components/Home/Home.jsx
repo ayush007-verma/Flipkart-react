@@ -1,6 +1,9 @@
 import NavBar from './NavBar'
 import Banner from './Banner'
 import Slide from './Slide'
+import  MidSlide  from './MidSlide'
+import MidSection from './MidSection'
+
 
 import { Box, styled } from '@mui/material'
 import { useEffect } from 'react'
@@ -25,7 +28,14 @@ const Home = () => {
 
       <Component>
         <Banner />
-        <Slide products={products} />
+        <MidSlide products={products} title="Deal of the Day" timer={true} />
+        <MidSection/>
+        <Slide products={products} title="Top Selection" timer={false} />
+        <Slide products={products} title="Season's Top Picks" timer={false} />
+        <Slide products={products} title="Discounts For You" timer={false} />
+        <Slide products={products} title="Trending Offers" timer={false} />
+        <Slide products={products} title="Recommended Items" timer={false} />
+        <Slide products={products} title="Top Deals on Apparels" timer={false} />
       </Component>
     </>
   )
