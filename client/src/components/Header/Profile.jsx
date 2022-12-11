@@ -10,6 +10,7 @@ const Logout = styled(Typography)`
     font-size : 14px;
     margin-left : 20px;
 `
+
 const Profile = ({ account, setAccount }) => {
 
     const [open, setOpen] = useState(false)

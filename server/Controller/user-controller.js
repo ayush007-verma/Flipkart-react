@@ -3,11 +3,11 @@ import User from "../model/userSchema.js";
 export const userSignup = async (request ,response) => {
     try{
 
-        // const exist = await User.findOne ({ username : request.body.username })
+        const exist = await User.findOne ({ username : request.body.username })
 
-        // if(exist){
-            // return response.status(401).json({ message : 'Username already exists '})
-        // }
+        if(exist){
+            return response.status(401).json({ message : 'Username already exists '})
+        }
         // console.log(request.body);
         console.log(request.body);
         const user = request.body
@@ -34,7 +34,7 @@ export const userLogin = async(request, response) => {
         }
         else
         {
-            return response.status(404).json(`inValid Login user not found`)
+            return response.status(404).json({message : `inValid Login user not found`})
         }
     }
     catch(err){
