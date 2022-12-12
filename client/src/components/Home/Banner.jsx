@@ -1,6 +1,6 @@
 import Carausel from 'react-multi-carousel'
 
-import { BannerData } from './../../Constants/data'
+import { bannerData } from './../../Constants/data'
 import { styled } from '@mui/material'
 import 'react-multi-carousel/lib/styles.css';
 const responsive = {
@@ -23,10 +23,14 @@ const responsive = {
     }
 };
 
-const BannerImg = styled('img')({
+const BannerImg = styled('img')( ({theme}) =>({
     width: "100%",
-    height: 280
-})
+    height: 280,
+    [theme.breakpoints.down('md')] : {
+        objectFit : 'cover',
+        height : 180
+    }
+}))
 
 const Banner = () => {
     return (
@@ -44,7 +48,7 @@ const Banner = () => {
             keyBoardControl={true}
         >
             {
-                BannerData.map((data, idx) => (
+                bannerData.map((data, idx) => (
                     <BannerImg key={idx} src={data.url} alt="banner" />
                 ))
             }

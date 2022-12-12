@@ -81,6 +81,16 @@ const SubHeading = styled(Typography)`
 
 const Header = () => {
 
+    const list = () => {
+        <Box>
+            <List>
+                <ListItem button>
+                    <CustomButtons />
+                </ListItem>
+            </List>
+        </Box>
+    }
+
     return (
         <AppBar position="static">
             <Toolbar>
