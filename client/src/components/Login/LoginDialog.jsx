@@ -2,6 +2,11 @@ import { useState, useContext } from 'react'
 import { Dialog, Box, TextField, Typography, Button, styled } from '@mui/material'
 import { authSignUp, authLogin } from '../../Services/api'
 import { DataContext } from '../../Context/DataProvider'
+import Cookies from 'universal-cookie';
+import { useDispatch } from 'react-redux';
+
+
+const cookies = new Cookies();
 
 const DialogWrapper = styled(Box)`
     height : 70vh;
@@ -108,6 +113,9 @@ const LoginDialog = ({ open, setOpen }) => {
 
     const { setAccount } = useContext(DataContext)
 
+    const dispatch = useDispatch();
+
+
     const onInputChange = (e) => {
         setSignUp({ ...signup, [e.target.name]: e.target.value })
         // console.log(signup)
@@ -136,17 +144,37 @@ const LoginDialog = ({ open, setOpen }) => {
         setLogin({ ...login, [e.target.name]: e.target.value })
     }
 
-    const loginUser = async () => {
+    const loginUserFetch = async () => {
         let response = await authLogin(login)
-        if (response.status == 200) {
+        console.log(response);
+        if (response.status === 200) {
             handleClose()
             // setAccount(login.username)
-            setAccount(response.data.data.firstName)
+            cookies.set("token", response.data.token)
+            // setAccount(response.data.message.firstName)
+            dispatch(loginUser(response.data.message));
         }
         else {
             setError(true)
         }
     }
+
+    const loginUser = (userObj) => {
+        return {
+            type: 'LOGIN_USER',
+            payload: userObj
+        }
+    }
+
+    // const fetchLoggedInUser = () => {
+    //     return dispatch => {
+    //         const token = cookies.get("token");
+    //         if(token) {
+                
+    //         }
+    //     }
+    // }
+
     return (
         <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { maxWidth: 'unset' } }}>
             <DialogWrapper>

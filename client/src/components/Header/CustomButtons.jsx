@@ -8,6 +8,10 @@ import { DataContext } from '../../Context/DataProvider';
 import LoginDialog from './../Login/LoginDialog'
 import Profile from './Profile';
 
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 const Wrapper = styled(Box)`
     display : flex;
     margin : 0 3% 0 auto;
@@ -41,11 +45,23 @@ const CustomButtons = () => {
         setOpen(true)
         console.log(true)
     }
+
+    const logoutUser = () => {
+        cookies.remove('firstName');
+        cookies.remove('lastName');
+        cookies.remove('email');
+        cookies.remove('userName');
+        cookies.remove('password');
+        cookies.remove('phone');
+
+        window.location.reload();
+    }
+
     return (
         <Wrapper style={{ display: 'flex', marginLeft: '10' }}>
             {account
                 ?
-                <Profile account={account} setAccount={setAccount}/>
+                <Profile account={account} setAccount={setAccount} logoutUser={logoutUser} />
                 :
                 <LoginButton variant="container"
                     onClick={() => openDialog()}>

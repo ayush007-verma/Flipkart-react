@@ -22,11 +22,13 @@ const SearchIconWrapper = styled(Box)`
 const Search = () => {
     return (
         <SearchContainer style={{ display: "flex" }}>
-            <InputSearchBase
-                placeholder='Search for products ,brands and more' />
-            <SearchIconWrapper>
-                <SearchIcon/>
-            </SearchIconWrapper>
+            <input class="search_input" type="text" title="Search for products, brands and more" name="q" autocomplete="off" placeholder="Search for products, brands and more" value="" />
+            {/* <div className='search-icon'> */}
+                {/* <SearchIcon/> */}
+            {/* </div> */}
+            <button className='search_icon' type='submit'>
+                <SearchIcon />
+            </button>
         </SearchContainer>
     )
 }
